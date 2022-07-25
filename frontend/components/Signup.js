@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import style from '../styles/Signup.module.css'
+import styles from '../styles/Signup.module.css'
 
 export const Signup = ({ signup }) => {
   const [username, setUserName] = useState('')
@@ -10,24 +10,24 @@ export const Signup = ({ signup }) => {
   }
 
   return (
-    <div className={style.authContainer}>
-      <h1 className={style.title}>Sign up to use TikTok</h1>
-      <div className={style.signupForm}>
-        <div className={style.inputField}>
-          <div className={style.inputTitle}>Username:</div>
-          <div className={style.inputContainer}>
+    <div className={styles.authContainer}>
+      <h1 className={styles.title}>Sign up to use TikTok</h1>
+      <div className={styles.signupForm}>
+        <div className={styles.inputField}>
+          <div className={styles.inputTitle}>Username:</div>
+          <div className={styles.inputContainer}>
             <input
-              className={style.input}
+              className={styles.input}
               type='text'
               onChange={e => setUserName(e.target.value)}
             />
           </div>
         </div>
-        <div className={style.inputField}>
-          <div className={style.inputTitle}>Profile Image:</div>
-          <div className={style.inputContainer}>
+        <div className={styles.inputField}>
+          <div className={styles.inputTitle}>Profile Image:</div>
+          <div className={styles.inputContainer}>
             <input
-              className={style.input}
+              className={styles.input}
               type='text'
               onChange={e => setProfile(e.target.value)}
             />
@@ -35,7 +35,7 @@ export const Signup = ({ signup }) => {
         </div>
       </div>
 
-      <div className={style.loginButton} onClick={signUpClicked}>
+      <div className={styles.loginButton} onClick={signUpClicked}>
         Sign up
       </div>
     </div>

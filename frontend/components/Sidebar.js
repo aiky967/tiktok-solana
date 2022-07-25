@@ -16,7 +16,7 @@ const Sidebar = ({
   likesAddress,
 }) => {
 
-  const [likes, setLiked] = useState(false)
+  const [liked, setLiked] = useState(false)
   const wallet = useWallet()
 
   useEffect(() => {

@@ -28,7 +28,8 @@ const useAccount = () => {
         await program.rpc.createUser(name, profile, {
             accounts: {
                 user: user_pda,
-                authority: wallet.publicKey, ...defaultAccounts,
+                authority: wallet.publicKey,
+                ...defaultAccounts,
             }
         })
         console.log('USER IS SIGNED UP')

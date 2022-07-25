@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import heartOutlined from '../assets/heartOutlined.svg'
-import styles from '../styles/CommentsCard.module.css'
+import styles from '../styles/CommentCard.module.css'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 

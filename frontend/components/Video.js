@@ -76,7 +76,7 @@ const Video = ({
                     address = {address}
                     createComment = {createComment}
                     getComments = {getComments}
-                    commentCounts = {commentCounts}
+                    commentCount = {commentCount}
                 />
             )}
         </div>
