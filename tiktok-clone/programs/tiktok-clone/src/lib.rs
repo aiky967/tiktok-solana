@@ -6,7 +6,7 @@ use anchor_lang::solana_program::log::{
     sol_log_compute_units
 };
 // Declare program ID
-declare_id!("11111111111111111111111111111111");
+declare_id!("8aYmhhTSgDZfQ8ka8YagjocQkDhFeCu1YbEVq5PPg8kF");
 
 // Video and comment text length
 const TEXT_LENGTH: usize = 1024;
