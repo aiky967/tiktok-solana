@@ -39,3 +39,7 @@
   .timestamp {
     opacity: 0.5;
   }
+  
+  .button {
+    opacity: 0.3;
+  }

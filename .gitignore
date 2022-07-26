@@ -45,7 +45,8 @@ package-lock.json
 target
 **/*.rs.bk
 node_modules
-
+test-ledger
 # Local Netlify folder
 .netlify
 .env
+test-ledger/validator-1658583153015.log
