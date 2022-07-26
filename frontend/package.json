@@ -20,6 +20,7 @@
     "@solana/wallet-adapter-wallets": "^0.16.0",
     "@solana/web3.js": "^1.39.1",
     "axios": "^0.26.1",
+    "fs": "^0.0.1-security",
     "javascript-time-ago": "^2.3.13",
     "next": "12.1.5",
     "react": "^18.0.0",
