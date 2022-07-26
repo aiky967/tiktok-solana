@@ -26,7 +26,7 @@ const useTiktok = (
   const connection = new anchor.web3.Connection(SOLANA_HOST)
   const program = getProgramInstance(connection, wallet)
   const getTiktoks = async () => {
-    console.log('fetching')
+    console.log('fetching tiktoks')
 
     const videos = await program.account.videoAccount.all()
     console.log(videos)
