@@ -1,5 +1,6 @@
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token'
 import { useWallet } from '@solana/wallet-adapter-react'
+import { PublicKey } from '@solana/web3.js'
 import { SOLANA_HOST } from '../utils/const'
 import { getProgramInstance } from '../utils/utils'
 const anchor = require('@project-serum/anchor')
@@ -36,69 +37,60 @@ const useTiktok = (
     // )
     // setTikToks(res.data);
 
+    // Save all videos in state for frontend 
     setTikToks(videos)
   }
 
-  const likeVideo = async index => {
-    let [video_pda] = await anchor.web3.PublicKey.findProgramAddress(
-      [utf8.encode('video'), new BN(index).toArrayLike(Buffer, 'be', 8)],
-      program.programId,
-    )
+  // Function to call likeVideo from smartContract
+  const likeVideo = async address => {
+    console.log('video liked!')
 
     const tx = await program.rpc.likeVideo({
       accounts: {
-        video: video_pda,
+        video: new PublicKey(address),
         authority: wallet.publicKey,
         ...defaultAccounts,
       },
-    })
-
-    console.log(tx)
+  })
+  console.log(tx)
   }
 
-  const createComment = async (index, count, comment) => {
-    let [video_pda] = await anchor.web3.PublicKey.findProgramAddress(
-      [utf8.encode('video'), new BN(index).toArrayLike(Buffer, 'be', 8)],
-      program.programId,
-    )
-
+  // Function to call createComment from smartContract
+  const createComment = async (address, count, comment) => {
     let [comment_pda] = await anchor.web3.PublicKey.findProgramAddress(
       [
         utf8.encode('comment'),
-        new BN(index).toArrayLike(Buffer, 'be', 8),
+        new PublicKey(address).toBuffer(),
         new BN(count).toArrayLike(Buffer, 'be', 8),
       ],
       program.programId,
     )
 
-    if (userDetail) {
+    if(userDetail) {
       const tx = await program.rpc.createComment(
         comment,
         userDetail.userName,
         userDetail.userProfileImageUrl,
         {
           accounts: {
-            video: video_pda,
+            video: new PublicKey(address),
             comment: comment_pda,
             authority: wallet.publicKey,
             ...defaultAccounts,
           },
         },
       )
+
       console.log(tx)
     }
-  }
+   }
 
+  // Function to call createVideo from smartcontract
   const newVideo = async () => {
-    let [state_pda] = await anchor.web3.PublicKey.findProgramAddress(
-      [utf8.encode('state')],
-      program.programId,
-    )
-
-    const stateInfo = await program.account.stateAccount.fetch(state_pda)
+    const randomKey = anchor.web3.Keypair.generate().publicKey;
 
     let [video_pda] = await anchor.web3.PublicKey.findProgramAddress(
-      [utf8.encode('video'), stateInfo.videoCount.toArrayLike(Buffer, 'be', 8)],
+      [utf8.encode('video'), randomKey.toBuffer()],
       program.programId,
     )
 
@@ -106,32 +98,33 @@ const useTiktok = (
       description,
       videoUrl,
       userDetail.userName,
-      userDetail.userProfileImageUrl,
+      userDetail.userProfileImageUrl, 
       {
         accounts: {
-          state: state_pda,
           video: video_pda,
+          randomKey: randomKey,
           authority: wallet.publicKey,
           ...defaultAccounts,
-        },
-      },
-    )
+        }
+      }
+    ) 
 
     console.log(tx)
-
     setDescription('')
     setVideoUrl('')
     setNewVideoShow(false)
   }
-  const getComments = async (index, count) => {
+
+  // Function to fetch comments from the commentAccount on the smartcontract
+  const getComments = async (address, count) => {
     let commentSigners = []
 
-    for (let i = 0; i < count; i++) {
+    for(let i = 0; i < count; i++) {
       let [commentSigner] = await anchor.web3.PublicKey.findProgramAddress(
         [
           utf8.encode('comment'),
-          new BN(index).toArrayLike(Buffer, 'be', 8),
-          new BN(i).toArrayLike(Buffer, 'be', 8),
+          new PublicKey(address).toBuffer(),
+          new BN(i).toArray(Buffer, 'be', 8)
         ],
         program.programId,
       )
@@ -143,8 +136,10 @@ const useTiktok = (
       commentSigners,
     )
     console.log(comments)
+
     return comments
   }
+  
   return { getTiktoks, likeVideo, createComment, newVideo, getComments }
 }
 

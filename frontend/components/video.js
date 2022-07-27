@@ -5,6 +5,7 @@ import Sidebar from './sidebar'
 import style from '../styles/Video.module.css'
 
 const Video = ({
+  address,
   url,
   channel,
   description,
@@ -53,11 +54,11 @@ const Video = ({
       <Footer channel={channel} description={description} song={index} />
 
       <Sidebar
+        address={address}
         likes={likes}
         shares={shares}
         onShowComments={showComments}
         likeVideo={likeVideo}
-        index={index}
         likesAddress={likesAddress}
         messages={commentCount}
       />
@@ -65,6 +66,7 @@ const Video = ({
         <Comments
           onHide={hideComments}
           index={index}
+          address={address}
           createComment={createComment}
           getComments={getComments}
           commentCount={commentCount}

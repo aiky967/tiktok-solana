@@ -6,6 +6,7 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import style from '../styles/Sidebar.module.css'
 
 function Sidebar({
+  address,
   likes,
   shares,
   messages,
@@ -39,7 +40,7 @@ function Sidebar({
           <FavoriteIcon
             fontSize='large'
             onClick={e => {
-              likeVideo(index)
+              likeVideo(address)
             }}
           />
         )}

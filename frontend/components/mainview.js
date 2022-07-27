@@ -103,12 +103,12 @@ const MainView = () => {
               tiktoks.map((tiktok, id) => (
                 <Video
                   key={id}
+                  address={tiktok.publicKey.toBase58()}
                   url={tiktok.account.videoUrl}
                   channel={tiktok.account.creatorName}
                   index={tiktok.account.index.toNumber()}
                   likes={tiktok.account.likes}
                   description={tiktok.account.description}
-                  shares={tiktok.account.remove.toNumber()}
                   likeVideo={likeVideo}
                   likesAddress={tiktok.account.peopleWhoLiked}
                   createComment={createComment}

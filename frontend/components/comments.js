@@ -5,7 +5,7 @@ import style from '../styles/Comments.module.css'
 const Comments = ({
   onHide,
   createComment,
-  index,
+  address,
   getComments,
   commentCount,
 }) => {
@@ -16,16 +16,16 @@ const Comments = ({
 
   useEffect(() => {
     gettingComments()
-  }, [index])
+  }, [address])
 
   const gettingComments = async () => {
-    let comments = await getComments(index, commentCount)
+    let comments = await getComments(address, commentCount)
     comments.sort((a, b) => b.videoTime.toNumber() - a.videoTime.toNumber())
     setComments(comments)
   }
 
   const replyClicked = async () => {
-    await createComment(index, commentCount, newComment)
+    await createComment(address, commentCount, newComment)
     setNewComment('')
   }
 
