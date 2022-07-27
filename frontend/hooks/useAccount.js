@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { SOLANA_HOST } from '../utils/const'
@@ -31,6 +31,7 @@ const useAccount = () => {
         ...defaultAccounts,
       },
     })
+    console.log("User is signed up")
   }
   return { signup }
 }

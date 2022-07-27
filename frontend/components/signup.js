@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import style from '../styles/Signup.module.css'
 
 export const Signup = ({ signup }) => {
   const [username, setUserName] = useState('')
   const [profile, setProfile] = useState('')
+  
 
   const signUpClicked = () => {
+    console.log("Singing Up")
     signup(username, profile)
   }
+
+  // console.log(username, profile)
 
   return (
     <div className={style.authContainer}>
@@ -19,6 +23,7 @@ export const Signup = ({ signup }) => {
             <input
               className={style.input}
               type='text'
+              placeholder='user'
               onChange={e => setUserName(e.target.value)}
             />
           </div>
@@ -29,6 +34,7 @@ export const Signup = ({ signup }) => {
             <input
               className={style.input}
               type='text'
+              placeholder='https://avatars.dicebear.com/api/adventurer/username.svg'
               onChange={e => setProfile(e.target.value)}
             />
           </div>
