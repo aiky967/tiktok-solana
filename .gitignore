@@ -49,4 +49,3 @@ test-ledger
 # Local Netlify folder
 .netlify
 .env
-test-ledger/validator-1658583153015.log

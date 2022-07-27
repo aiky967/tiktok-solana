@@ -2,17 +2,13 @@
 seeds = false
 
 [programs.devnet]
-tiktok_clone = "Az4edEtU6JtghfueC4hS7Fo5fG3evPY5VUt6YbNHmhaN"
-
-[programs.localnet]
-tiktok_clone = "Grgf27wBA8E43gzAiMBvh6hoj7SBay24E4b636zgtJ4a"
+tiktok_clone = "996FV9fdyt2KiwE4RGeyNTa8jzbnqiA15yu2E2iYiR1T"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
 cluster = "devnet"
-#cluster = "localnet"
 
 wallet = "~/.config/solana/id.json"
 
